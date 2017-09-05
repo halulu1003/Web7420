@@ -12,8 +12,8 @@ namespace ASS7420_1.Data
         public ShopContext(DbContextOptions<ShopContext> opyions) : base(opyions)
         { }
         public DbSet<Customer> Customers { get; set; }
-        public DbSet<Order> Order { get; set; }
-        public DbSet<Orderitem> Orderitem { get; set; }
+        public DbSet<Order> orders { get; set; }
+        public DbSet<Orderitem> orderitems { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

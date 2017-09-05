@@ -8,7 +8,7 @@ namespace ASS7420_1.Models
 {
     public class Orderitem
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int OrderitemID { get; set; }
         public int HatID { get; set; }
         public int OrderID { get; set; }
         public string Quantity { get; set; }
