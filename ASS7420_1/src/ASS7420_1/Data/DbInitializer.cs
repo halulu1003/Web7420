@@ -18,11 +18,11 @@ namespace ASS7420_1.Data
             }
             var customers = new Customer[]
             {
-            new Customer{Name="Carson",Home="Alexander",Work="Alexa",Mobile="15498788",Email="15498788@aa.com",Address="CarsonCity"},
-            new Customer{Name="Barson",Home="Alexander",Work="Alexa",Mobile="15498788",Email="15498788@aa.com",Address="CarsonCity"},
-            new Customer{Name="Darson",Home="Alexander",Work="Alexa",Mobile="15498788",Email="15498788@aa.com",Address="CarsonCity"},
-            new Customer{Name="Earson",Home="Alexander",Work="Alexa",Mobile="15498788",Email="15498788@aa.com",Address="CarsonCity"},
-            new Customer{Name="Larson",Home="Alexander",Work="Alexa",Mobile="15498788",Email="15498788@aa.com",Address="CarsonCity"},
+                new Customer{Name="Carson",Home="1234567",Work="Alexa",Mobile="15498788",Email="15498788@aa.com",Address="CarsonCity"},
+                new Customer{Name="Barson",Home="1234567",Work="Alexa",Mobile="15498788",Email="15498788@aa.com",Address="CarsonCity"},
+                new Customer{Name="Darson",Home="1234567",Work="Alexa",Mobile="15498788",Email="15498788@aa.com",Address="CarsonCity"},
+                new Customer{Name="Earson",Home="1234567",Work="Alexa",Mobile="15498788",Email="15498788@aa.com",Address="CarsonCity"},
+                new Customer{Name="Larson",Home="1234567",Work="Alexa",Mobile="15498788",Email="15498788@aa.com",Address="CarsonCity"},
             };
             foreach (Customer c in customers)
             {
@@ -38,19 +38,19 @@ namespace ASS7420_1.Data
             };
             foreach (Order o in orders)
             {
-                context.orders.Add(o);
+                context.Orders.Add(o);
             }
             context.SaveChanges();
             var orderitems = new Orderitem[]
             {
-                new Orderitem { HatID=1,OrderID=1050,Quantity="2"},
-                new Orderitem{HatID=3,OrderID=1050,Quantity="2"},
-                new Orderitem{HatID=4,OrderID=1050,Quantity="2"},
+                new Orderitem { HatID=1,OrderID=1050,Quantity=4},
+                new Orderitem{HatID=3,OrderID=1050,Quantity=5},
+                new Orderitem{HatID=4,OrderID=1050,Quantity=24},
 
             };
             foreach (Orderitem ord in orderitems)
             {
-                context.orderitems.Add(ord);
+                context.Orderitems.Add(ord);
             }
             context.SaveChanges();
         }

@@ -11,7 +11,7 @@ namespace ASS7420_1.Models
         public string SupplierID { get; set; }
         public string CategoryID { get; set; }
         public string HatName { get; set; }
-        public float Price { get; set; }
+        public double Price { get; set; }
         public string Description { get; set; }
         public string Image { get; set; }
 
