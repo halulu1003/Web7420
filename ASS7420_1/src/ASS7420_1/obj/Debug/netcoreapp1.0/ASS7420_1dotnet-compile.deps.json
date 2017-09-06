@@ -36,7 +36,8 @@
           "Microsoft.Extensions.Logging.Debug": "1.0.0",
           "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0",
           "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0",
-          "System.Threading.Tasks.Parallel": "4.0.1"
+          "System.Threading.Tasks.Parallel": "4.0.1",
+          "Microsoft.AspNetCore.Mvc.Core": "1.0.1"
         },
         "compile": {
           "ASS7420_1.dll": {}
@@ -2897,7 +2898,8 @@
           "Microsoft.Extensions.Logging.Debug": "1.0.0",
           "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0",
           "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0",
-          "System.Threading.Tasks.Parallel": "4.0.1"
+          "System.Threading.Tasks.Parallel": "4.0.1",
+          "Microsoft.AspNetCore.Mvc.Core": "1.0.1"
         },
         "runtime": {
           "ASS7420_1.dll": {}

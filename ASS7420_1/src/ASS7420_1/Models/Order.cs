@@ -18,5 +18,6 @@ namespace ASS7420_1.Models
         public double Grandtotal { get; set; }
 
         public virtual Customer Customer { get; set; }
+        public virtual ICollection<Orderitem> Orderitems { get; set; }
     }
 }

@@ -8,8 +8,8 @@ namespace ASS7420_1.Models
     public class Hat
     {
         public int HatID { get; set; }
-        public string SupplierID { get; set; }
-        public string CategoryID { get; set; }
+        public int SupplierID { get; set; }
+        public int CategoryID { get; set; }
         public string HatName { get; set; }
         public double Price { get; set; }
         public string Description { get; set; }

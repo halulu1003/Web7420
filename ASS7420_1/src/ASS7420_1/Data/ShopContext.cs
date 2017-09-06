@@ -14,6 +14,7 @@ namespace ASS7420_1.Data
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Orderitem> Orderitems { get; set; }
+        public object Categories { get; internal set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -21,5 +22,7 @@ namespace ASS7420_1.Data
             modelBuilder.Entity<Order>().ToTable("Order");
             modelBuilder.Entity<Orderitem>().ToTable("Orderitem");
         }
+
+        public DbSet<Hat> Hat { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿{
+{
   "userSecretsId": "aspnet-ASS7420_1-b80928d9-298c-4d65-995a-fb9104ea30e7",
 
   "dependencies": {
@@ -45,7 +45,8 @@
       "version": "1.0.0-preview2-final",
       "type": "build"
     },
-    "System.Threading.Tasks.Parallel": "4.0.1"
+    "System.Threading.Tasks.Parallel": "4.0.1",
+    "Microsoft.AspNetCore.Mvc.Core": "1.0.1"
   },
 
   "tools": {
