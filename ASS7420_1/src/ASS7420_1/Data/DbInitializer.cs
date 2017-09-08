@@ -53,6 +53,17 @@ namespace ASS7420_1.Data
                 context.Orderitems.Add(ord);
             }
             context.SaveChanges();
+            var hats = new Hat[]
+                {
+                    new Hat { SupplierID=1,CategoryID=2,HatName="KALSD",Price=12.5,Description="FAFDFGGSAD",Image="CDSD"},
+                    new Hat { SupplierID=2,CategoryID=2,HatName="KALSD",Price=12.5,Description="FAFDFGGSAD",Image="CDSD"},
+                    new Hat { SupplierID=3,CategoryID=2,HatName="KALSD",Price=12.5,Description="FAFDFGGSAD",Image="CDSD"},
+                };
+            foreach (Hat h in hats)
+            {
+                context.Hats.Add(h);
+            }
+            context.SaveChanges();
         }
     }
 }

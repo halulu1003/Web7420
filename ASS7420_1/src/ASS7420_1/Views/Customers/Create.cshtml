@@ -1,10 +1,17 @@
 @model ASS7420_1.Models.Customer
 
 @{
-    ViewData["Title"] = "Create";
+    Layout = null;
 }
 
-<h2>Create</h2>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+</head>
+<body>
 
 <form asp-action="Create">
     <div class="form-horizontal">
@@ -68,3 +75,5 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+</body>
+</html>

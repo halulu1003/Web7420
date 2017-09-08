@@ -10,23 +10,22 @@ using ASS7420_1.Models;
 
 namespace ASS7420_1.Controllers
 {
-    public class HatsController : Controller
+    public class SuppliersController : Controller
     {
         private readonly ShopContext _context;
 
-        public HatsController(ShopContext context)
+        public SuppliersController(ShopContext context)
         {
             _context = context;    
         }
 
-        // GET: Hats
+        // GET: Suppliers
         public async Task<IActionResult> Index()
         {
-            var shopContext = _context.Hat.Include(h => h.Category).Include(h => h.Supplier);
-            return View(await shopContext.ToListAsync());
+            return View(await _context.Supplier.ToListAsync());
         }
 
-        // GET: Hats/Details/5
+        // GET: Suppliers/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -34,42 +33,38 @@ namespace ASS7420_1.Controllers
                 return NotFound();
             }
 
-            var hat = await _context.Hat.SingleOrDefaultAsync(m => m.HatID == id);
-            if (hat == null)
+            var supplier = await _context.Supplier.SingleOrDefaultAsync(m => m.SupplierID == id);
+            if (supplier == null)
             {
                 return NotFound();
             }
 
-            return View(hat);
+            return View(supplier);
         }
 
-        // GET: Hats/Create
+        // GET: Suppliers/Create
         public IActionResult Create()
         {
-            ViewData["CategoryID"] = new SelectList(_context.Set<Category>(), "CategoryID", "CategoryID");
-            ViewData["SupplierID"] = new SelectList(_context.Set<Supplier>(), "SupplierID", "SupplierID");
             return View();
         }
 
-        // POST: Hats/Create
+        // POST: Suppliers/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("HatID,CategoryID,Description,HatName,Image,Price,SupplierID")] Hat hat)
+        public async Task<IActionResult> Create([Bind("SupplierID,Address,Email,Home,Mobile,Name,Work")] Supplier supplier)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(hat);
+                _context.Add(supplier);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewData["CategoryID"] = new SelectList(_context.Set<Category>(), "CategoryID", "CategoryID", hat.CategoryID);
-            ViewData["SupplierID"] = new SelectList(_context.Set<Supplier>(), "SupplierID", "SupplierID", hat.SupplierID);
-            return View(hat);
+            return View(supplier);
         }
 
-        // GET: Hats/Edit/5
+        // GET: Suppliers/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -77,24 +72,22 @@ namespace ASS7420_1.Controllers
                 return NotFound();
             }
 
-            var hat = await _context.Hat.SingleOrDefaultAsync(m => m.HatID == id);
-            if (hat == null)
+            var supplier = await _context.Supplier.SingleOrDefaultAsync(m => m.SupplierID == id);
+            if (supplier == null)
             {
                 return NotFound();
             }
-            ViewData["CategoryID"] = new SelectList(_context.Set<Category>(), "CategoryID", "CategoryID", hat.CategoryID);
-            ViewData["SupplierID"] = new SelectList(_context.Set<Supplier>(), "SupplierID", "SupplierID", hat.SupplierID);
-            return View(hat);
+            return View(supplier);
         }
 
-        // POST: Hats/Edit/5
+        // POST: Suppliers/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("HatID,CategoryID,Description,HatName,Image,Price,SupplierID")] Hat hat)
+        public async Task<IActionResult> Edit(int id, [Bind("SupplierID,Address,Email,Home,Mobile,Name,Work")] Supplier supplier)
         {
-            if (id != hat.HatID)
+            if (id != supplier.SupplierID)
             {
                 return NotFound();
             }
@@ -103,12 +96,12 @@ namespace ASS7420_1.Controllers
             {
                 try
                 {
-                    _context.Update(hat);
+                    _context.Update(supplier);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!HatExists(hat.HatID))
+                    if (!SupplierExists(supplier.SupplierID))
                     {
                         return NotFound();
                     }
@@ -119,12 +112,10 @@ namespace ASS7420_1.Controllers
                 }
                 return RedirectToAction("Index");
             }
-            ViewData["CategoryID"] = new SelectList(_context.Set<Category>(), "CategoryID", "CategoryID", hat.CategoryID);
-            ViewData["SupplierID"] = new SelectList(_context.Set<Supplier>(), "SupplierID", "SupplierID", hat.SupplierID);
-            return View(hat);
+            return View(supplier);
         }
 
-        // GET: Hats/Delete/5
+        // GET: Suppliers/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -132,29 +123,29 @@ namespace ASS7420_1.Controllers
                 return NotFound();
             }
 
-            var hat = await _context.Hat.SingleOrDefaultAsync(m => m.HatID == id);
-            if (hat == null)
+            var supplier = await _context.Supplier.SingleOrDefaultAsync(m => m.SupplierID == id);
+            if (supplier == null)
             {
                 return NotFound();
             }
 
-            return View(hat);
+            return View(supplier);
         }
 
-        // POST: Hats/Delete/5
+        // POST: Suppliers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var hat = await _context.Hat.SingleOrDefaultAsync(m => m.HatID == id);
-            _context.Hat.Remove(hat);
+            var supplier = await _context.Supplier.SingleOrDefaultAsync(m => m.SupplierID == id);
+            _context.Supplier.Remove(supplier);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
-        private bool HatExists(int id)
+        private bool SupplierExists(int id)
         {
-            return _context.Hat.Any(e => e.HatID == id);
+            return _context.Supplier.Any(e => e.SupplierID == id);
         }
     }
 }

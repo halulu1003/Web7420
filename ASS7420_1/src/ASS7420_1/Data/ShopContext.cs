@@ -9,10 +9,13 @@ namespace ASS7420_1.Data
 {
     public class ShopContext: DbContext
     {
+        internal object Categorys;
+
         public ShopContext(DbContextOptions<ShopContext> opyions) : base(opyions)
         { }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<Hat> Hats { get; set; }
         public DbSet<Orderitem> Orderitems { get; set; }
         public object Categories { get; internal set; }
 
@@ -21,8 +24,10 @@ namespace ASS7420_1.Data
             modelBuilder.Entity<Customer>().ToTable("Customer");
             modelBuilder.Entity<Order>().ToTable("Order");
             modelBuilder.Entity<Orderitem>().ToTable("Orderitem");
+            modelBuilder.Entity<Hat>().ToTable("Hat");
         }
 
-        public DbSet<Hat> Hat { get; set; }
+        public DbSet<Supplier> Supplier { get; set; }
+
     }
 }

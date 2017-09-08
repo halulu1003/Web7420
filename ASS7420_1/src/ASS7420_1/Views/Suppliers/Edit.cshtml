@@ -1,4 +1,4 @@
-@model ASS7420_1.Models.Customer
+@model ASS7420_1.Models.Supplier
 
 @{
     Layout = null;
@@ -15,10 +15,10 @@
 
 <form asp-action="Edit">
     <div class="form-horizontal">
-        <h4>Customer</h4>
+        <h4>Supplier</h4>
         <hr />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <input type="hidden" asp-for="CustomerID" />
+    <input type="hidden" asp-for="SupplierID" />
         <div class="form-group">
             <label asp-for="Address" class="col-md-2 control-label"></label>
             <div class="col-md-10">
