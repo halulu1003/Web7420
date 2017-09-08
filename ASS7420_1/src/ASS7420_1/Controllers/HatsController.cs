@@ -10,22 +10,23 @@ using ASS7420_1.Models;
 
 namespace ASS7420_1.Controllers
 {
-    public class CustomersController : Controller
+    public class HatsController : Controller
     {
         private readonly ShopContext _context;
 
-        public CustomersController(ShopContext context)
+        public HatsController(ShopContext context)
         {
             _context = context;    
         }
 
-        // GET: Customers
+        // GET: Hats
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Customers.ToListAsync());
+            var shopContext = _context.Hats.Include(h => h.Category).Include(h => h.Supplier);
+            return View(await shopContext.ToListAsync());
         }
 
-        // GET: Customers/Details/5
+        // GET: Hats/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,41 +34,42 @@ namespace ASS7420_1.Controllers
                 return NotFound();
             }
 
-            var customer = await _context.Customers
-                .Include(c => c.Name)
-                .ThenInclude(o => o.S)
-            var customer = await _context.Customers.SingleOrDefaultAsync(m => m.CustomerID == id);
-            if (customer == null)
+            var hat = await _context.Hats.SingleOrDefaultAsync(m => m.HatID == id);
+            if (hat == null)
             {
                 return NotFound();
             }
 
-            return View(customer);
+            return View(hat);
         }
 
-        // GET: Customers/Create
+        // GET: Hats/Create
         public IActionResult Create()
         {
+            ViewData["CategoryID"] = new SelectList(_context.Set<Category>(), "CategoryID", "CategoryID");
+            ViewData["SupplierID"] = new SelectList(_context.Supplier, "SupplierID", "SupplierID");
             return View();
         }
 
-        // POST: Customers/Create
+        // POST: Hats/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CustomerID,Address,Email,Home,Mobile,Name,Work")] Customer customer)
+        public async Task<IActionResult> Create([Bind("HatID,CategoryID,Description,HatName,Image,Price,SupplierID")] Hat hat)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(customer);
+                _context.Add(hat);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(customer);
+            ViewData["CategoryID"] = new SelectList(_context.Set<Category>(), "CategoryID", "CategoryID", hat.CategoryID);
+            ViewData["SupplierID"] = new SelectList(_context.Supplier, "SupplierID", "SupplierID", hat.SupplierID);
+            return View(hat);
         }
 
-        // GET: Customers/Edit/5
+        // GET: Hats/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -75,22 +77,24 @@ namespace ASS7420_1.Controllers
                 return NotFound();
             }
 
-            var customer = await _context.Customers.SingleOrDefaultAsync(m => m.CustomerID == id);
-            if (customer == null)
+            var hat = await _context.Hats.SingleOrDefaultAsync(m => m.HatID == id);
+            if (hat == null)
             {
                 return NotFound();
             }
-            return View(customer);
+            ViewData["CategoryID"] = new SelectList(_context.Set<Category>(), "CategoryID", "CategoryID", hat.CategoryID);
+            ViewData["SupplierID"] = new SelectList(_context.Supplier, "SupplierID", "SupplierID", hat.SupplierID);
+            return View(hat);
         }
 
-        // POST: Customers/Edit/5
+        // POST: Hats/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CustomerID,Address,Email,Home,Mobile,Name,Work")] Customer customer)
+        public async Task<IActionResult> Edit(int id, [Bind("HatID,CategoryID,Description,HatName,Image,Price,SupplierID")] Hat hat)
         {
-            if (id != customer.CustomerID)
+            if (id != hat.HatID)
             {
                 return NotFound();
             }
@@ -99,12 +103,12 @@ namespace ASS7420_1.Controllers
             {
                 try
                 {
-                    _context.Update(customer);
+                    _context.Update(hat);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CustomerExists(customer.CustomerID))
+                    if (!HatExists(hat.HatID))
                     {
                         return NotFound();
                     }
@@ -115,10 +119,12 @@ namespace ASS7420_1.Controllers
                 }
                 return RedirectToAction("Index");
             }
-            return View(customer);
+            ViewData["CategoryID"] = new SelectList(_context.Set<Category>(), "CategoryID", "CategoryID", hat.CategoryID);
+            ViewData["SupplierID"] = new SelectList(_context.Supplier, "SupplierID", "SupplierID", hat.SupplierID);
+            return View(hat);
         }
 
-        // GET: Customers/Delete/5
+        // GET: Hats/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -126,29 +132,29 @@ namespace ASS7420_1.Controllers
                 return NotFound();
             }
 
-            var customer = await _context.Customers.SingleOrDefaultAsync(m => m.CustomerID == id);
-            if (customer == null)
+            var hat = await _context.Hats.SingleOrDefaultAsync(m => m.HatID == id);
+            if (hat == null)
             {
                 return NotFound();
             }
 
-            return View(customer);
+            return View(hat);
         }
 
-        // POST: Customers/Delete/5
+        // POST: Hats/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var customer = await _context.Customers.SingleOrDefaultAsync(m => m.CustomerID == id);
-            _context.Customers.Remove(customer);
+            var hat = await _context.Hats.SingleOrDefaultAsync(m => m.HatID == id);
+            _context.Hats.Remove(hat);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
-        private bool CustomerExists(int id)
+        private bool HatExists(int id)
         {
-            return _context.Customers.Any(e => e.CustomerID == id);
+            return _context.Hats.Any(e => e.HatID == id);
         }
     }
 }

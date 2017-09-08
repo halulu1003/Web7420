@@ -13,7 +13,7 @@ namespace ASS7420_1.Models
         public int OrderID { get; set; }
         public int Quantity { get; set; }
 
-        public virtual Hat Hat { get; set; }
+        public virtual ICollection<Hat> Hat { get; set; }
         public virtual Order Order { get; set; }
     }
 }
