@@ -9,15 +9,17 @@ namespace ASS7420_1.Data
 {
     public class ShopContext: DbContext
     {
-        internal object Categorys;
 
         public ShopContext(DbContextOptions<ShopContext> opyions) : base(opyions)
         { }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Order> Orders { get; set; }
-        public DbSet<Hat> Hats { get; set; }
         public DbSet<Orderitem> Orderitems { get; set; }
-        public object Categories { get; internal set; }
+        public DbSet<Hat> Hats { get; set; }
+        public DbSet<Supplier> Suppliers { get; set; }
+        public DbSet<Category> Categorys { get; set; }
+
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -25,9 +27,9 @@ namespace ASS7420_1.Data
             modelBuilder.Entity<Order>().ToTable("Order");
             modelBuilder.Entity<Orderitem>().ToTable("Orderitem");
             modelBuilder.Entity<Hat>().ToTable("Hat");
+            modelBuilder.Entity<Supplier>().ToTable("Supplier");
+            modelBuilder.Entity<Category>().ToTable("Category");
         }
-
-        public DbSet<Supplier> Supplier { get; set; }
 
     }
 }

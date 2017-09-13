@@ -64,6 +64,31 @@ namespace ASS7420_1.Data
                 context.Hats.Add(h);
             }
             context.SaveChanges();
+            var suppliers = new Supplier[]
+                {
+                    new Supplier { Name="ASD",Home="12448482",Work="323656",Mobile="2545223",Email="GDGFSSF@123.com",Address="Larson"},
+                    new Supplier { Name="BSD",Home="12448482",Work="323656",Mobile="2545223",Email="GDGFSSF@123.com",Address="Larson"},
+                    new Supplier { Name="CSD",Home="12448482",Work="323656",Mobile="2545223",Email="GDGFSSF@123.com",Address="Larson"},
+                    new Supplier { Name="DSD",Home="12448482",Work="323656",Mobile="2545223",Email="GDGFSSF@123.com",Address="Larson"},
+                    new Supplier { Name="ESD",Home="12448482",Work="323656",Mobile="2545223",Email="GDGFSSF@123.com",Address="Larson"},
+                    new Supplier { Name="FSD",Home="12448482",Work="323656",Mobile="2545223",Email="GDGFSSF@123.com",Address="Larson"},
+                };
+            foreach (Supplier su in suppliers)
+            {
+                context.Suppliers.Add(su);
+            }
+            context.SaveChanges();
+            var categorys = new Category[]
+                {
+                    new Category { Name="Male"},
+                    new Category { Name="Female"},
+                    new Category { Name="Children"},
+        };
+            foreach (Category ca in categorys)
+            {
+                context.Categorys.Add(ca);
+            }
+            context.SaveChanges();
         }
     }
 }

@@ -34,9 +34,10 @@ namespace ASS7420_1.Controllers
             }
 
             var customer = await _context.Customers
-                .Include(c => c.Name)
-                .ThenInclude(o => o.S)
-            var customer = await _context.Customers.SingleOrDefaultAsync(m => m.CustomerID == id);
+                .Include(c => c.Orders)
+                .ThenInclude(o => o.Orderitems)
+                .AsNoTracking()
+                .SingleOrDefaultAsync(m => m.CustomerID == id);
             if (customer == null)
             {
                 return NotFound();
