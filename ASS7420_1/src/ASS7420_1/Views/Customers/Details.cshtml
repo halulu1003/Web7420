@@ -53,6 +53,28 @@
         <dd>
             @Html.DisplayFor(model => model.Work)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Orders)
+        </dt>
+        <dd>
+            <table class="table">
+                <tr>
+                    <th>Order Title</th>
+                    <th>Status</th>
+                </tr>
+                @foreach (var item in Model.Orders)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.OrderID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </dd>
     </dl>
 </div>
 <div>

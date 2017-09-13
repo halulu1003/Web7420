@@ -59,11 +59,21 @@ namespace ASS7420_1.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CustomerID,Address,Email,Home,Mobile,Name,Work")] Customer customer)
         {
+            try
+            { 
             if (ModelState.IsValid)
             {
                 _context.Add(customer);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
+            }
+            }
+            catch (DbUpdateException /* ex */)
+            {
+                //Log the error (uncomment ex variable name and write a log.
+                ModelState.AddModelError("", "Unable to save changes. " +
+                "Try again, and if the problem persists " +
+                "see your system administrator.");
             }
             return View(customer);
         }
