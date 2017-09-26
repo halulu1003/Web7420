@@ -20,9 +20,28 @@ namespace ASS7420_1.Controllers
         }
 
         // GET: Customers
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder)
         {
-            return View(await _context.Customers.ToListAsync());
+            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["IDSortParm"] = sortOrder == "ID" ? "id_desc" : "ID";
+            var customers = from c in _context.Customers
+                           select c;
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    customers = customers.OrderByDescending(c => c.Name);
+                    break;
+                case "ID":
+                    customers = customers.OrderBy(c => c.CustomerID);
+                    break;
+                case "id_desc":
+                    customers = customers.OrderByDescending(c => c.CustomerID);
+                    break;
+                default:
+                    customers = customers.OrderBy(c => c.Name);
+                    break;
+            }
+            return View(await customers.AsNoTracking().ToListAsync());
         }
 
         // GET: Customers/Details/5
