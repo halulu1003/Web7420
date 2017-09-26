@@ -20,12 +20,17 @@ namespace ASS7420_1.Controllers
         }
 
         // GET: Customers
-        public async Task<IActionResult> Index(string sortOrder)
+        public async Task<IActionResult> Index(string sortOrder,string searchString)
         {
             ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewData["IDSortParm"] = sortOrder == "ID" ? "id_desc" : "ID";
+            ViewData["CurrentFilter"] = searchString;
             var customers = from c in _context.Customers
                            select c;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                customers = customers.Where(c => c.Name.Contains(searchString));
+            }
             switch (sortOrder)
             {
                 case "name_desc":
