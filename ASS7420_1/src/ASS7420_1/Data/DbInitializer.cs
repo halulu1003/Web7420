@@ -43,9 +43,9 @@ namespace ASS7420_1.Data
             context.SaveChanges();
             var orderitems = new Orderitem[]
             {
-                new Orderitem { HatID=1,OrderID=1050,Quantity=4},
-                new Orderitem{HatID=3,OrderID=1050,Quantity=5},
-                new Orderitem{HatID=4,OrderID=1050,Quantity=24},
+                new Orderitem{HatID=1,OrderID=1,Quantity=4},
+                new Orderitem{HatID=3,OrderID=2,Quantity=5},
+                new Orderitem{HatID=2,OrderID=4,Quantity=24},
 
             };
             foreach (Orderitem ord in orderitems)
