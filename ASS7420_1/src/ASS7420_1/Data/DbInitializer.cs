@@ -18,11 +18,11 @@ namespace ASS7420_1.Data
             }
             var customers = new Customer[]
             {
-                new Customer{Name="Carson",Home="1234567",Work="Alexa",Mobile="15498788",Email="15498788@aa.com",Address="CarsonCity"},
-                new Customer{Name="Barson",Home="1234567",Work="Alexa",Mobile="15498788",Email="15498788@aa.com",Address="CarsonCity"},
-                new Customer{Name="Darson",Home="1234567",Work="Alexa",Mobile="15498788",Email="15498788@aa.com",Address="CarsonCity"},
-                new Customer{Name="Earson",Home="1234567",Work="Alexa",Mobile="15498788",Email="15498788@aa.com",Address="CarsonCity"},
-                new Customer{Name="Larson",Home="1234567",Work="Alexa",Mobile="15498788",Email="15498788@aa.com",Address="CarsonCity"},
+                new Customer{Name="Carson",Home="1234567",Work="76543241",Mobile="15498788",Email="15498788@aa.com",Address="CarsonCity"},
+                new Customer{Name="Barson",Home="1234567",Work="4314134",Mobile="15498788",Email="15498788@aa.com",Address="CarsonCity"},
+                new Customer{Name="Darson",Home="1234567",Work="4134134",Mobile="15498788",Email="15498788@aa.com",Address="CarsonCity"},
+                new Customer{Name="Earson",Home="1234567",Work="43534534",Mobile="15498788",Email="15498788@aa.com",Address="CarsonCity"},
+                new Customer{Name="Larson",Home="1234567",Work="6542478",Mobile="15498788",Email="15498788@aa.com",Address="CarsonCity"},
             };
             foreach (Customer c in customers)
             {
@@ -41,27 +41,16 @@ namespace ASS7420_1.Data
                 context.Orders.Add(o);
             }
             context.SaveChanges();
-            var orderitems = new Orderitem[]
+            
+            var categorys = new Category[]
             {
-                new Orderitem{HatID=1,OrderID=1,Quantity=4},
-                new Orderitem{HatID=3,OrderID=2,Quantity=5},
-                new Orderitem{HatID=2,OrderID=4,Quantity=24},
-
+                    new Category { Name="Male"},
+                    new Category { Name="Female"},
+                    new Category { Name="Children"},
             };
-            foreach (Orderitem ord in orderitems)
+            foreach (Category ca in categorys)
             {
-                context.Orderitems.Add(ord);
-            }
-            context.SaveChanges();
-            var hats = new Hat[]
-                {
-                    new Hat { SupplierID=1,CategoryID=2,HatName="KALSD",Price=12.5,Description="FAFDFGGSAD",Image="CDSD"},
-                    new Hat { SupplierID=2,CategoryID=2,HatName="KALSD",Price=12.5,Description="FAFDFGGSAD",Image="CDSD"},
-                    new Hat { SupplierID=3,CategoryID=2,HatName="KALSD",Price=12.5,Description="FAFDFGGSAD",Image="CDSD"},
-                };
-            foreach (Hat h in hats)
-            {
-                context.Hats.Add(h);
+                context.Categorys.Add(ca);
             }
             context.SaveChanges();
             var suppliers = new Supplier[]
@@ -78,15 +67,30 @@ namespace ASS7420_1.Data
                 context.Suppliers.Add(su);
             }
             context.SaveChanges();
-            var categorys = new Category[]
+            var hats = new Hat[]
                 {
-                    new Category { Name="Male"},
-                    new Category { Name="Female"},
-                    new Category { Name="Children"},
-        };
-            foreach (Category ca in categorys)
+                    new Hat { SupplierID=1,CategoryID=2,HatName="KALSD",Price=12.5,Description="FAFDFGGSAD",Image="CDSD"},
+                    new Hat { SupplierID=2,CategoryID=2,HatName="ALSD",Price=8.5,Description="FAFDFGGSAD",Image="CDSD"},
+                    new Hat { SupplierID=3,CategoryID=1,HatName="DALSD",Price=11,Description="FAFDFGGSAD",Image="CDSD"},
+                    new Hat { SupplierID=1,CategoryID=2,HatName="QALSD",Price=16.2,Description="FAFDFGGSAD",Image="CDSD"},
+                    new Hat { SupplierID=2,CategoryID=2,HatName="CLSD",Price=7.9,Description="FAFDFGGSAD",Image="CDSD"},
+                    new Hat { SupplierID=3,CategoryID=1,HatName="DALSD",Price=14.3,Description="FAFDFGGSAD",Image="CDSD"},
+                };
+            foreach (Hat h in hats)
             {
-                context.Categorys.Add(ca);
+                context.Hats.Add(h);
+            }
+            context.SaveChanges();
+            var orderitems = new Orderitem[]
+            {
+                new Orderitem{HatID=1,OrderID=1,Quantity=4},
+                new Orderitem{HatID=3,OrderID=2,Quantity=5},
+                new Orderitem{HatID=2,OrderID=4,Quantity=24},
+
+            };
+            foreach (Orderitem ord in orderitems)
+            {
+                context.Orderitems.Add(ord);
             }
             context.SaveChanges();
         }
