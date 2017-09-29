@@ -7,16 +7,23 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ASS7420_1.Data;
 using ASS7420_1.Models;
+using System.Net.Http.Headers;
+using Microsoft.AspNetCore.Hosting; 
+using Microsoft.AspNetCore.Http; 
+using System.IO;
+
 
 namespace ASS7420_1.Controllers
 {
     public class HatsController : Controller
     {
         private readonly ShopContext _context;
+        private readonly IHostingEnvironment _hostingEnv;
 
-        public HatsController(ShopContext context)
+        public HatsController(ShopContext context, IHostingEnvironment hEnv)
         {
-            _context = context;    
+            _context = context;
+            _hostingEnv = hEnv;
         }
 
         // GET: Hats
@@ -81,21 +88,66 @@ namespace ASS7420_1.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("HatID,CategoryID,Description,HatName,Image,Price,SupplierID")] Hat hat)
+        public async Task<IActionResult> Create([Bind("HatID,CategoryID,Description,HatName,Image,Price,SupplierID")] Hat hat, IList<IFormFile> _files)
+
+
         {
-            if (ModelState.IsValid)
+            var relativeName = "";
+            var fileName = "";
+
+            if (_files.Count < 1)
             {
-                _context.Add(hat);
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Index");
+                relativeName = "/Images/Default.jpg";
             }
-            ViewData["CategoryID"] = new SelectList(_context.Categorys, "CategoryID", "CategoryID", hat.CategoryID);
-            ViewData["SupplierID"] = new SelectList(_context.Suppliers, "SupplierID", "SupplierID", hat.SupplierID);
+            else
+            {
+                foreach (var file in _files)
+                {
+                    fileName = ContentDispositionHeaderValue
+                                      .Parse(file.ContentDisposition)
+                                      .FileName
+                                      .Trim('"');
+                    //Path for localhost
+                    relativeName = "/Images/HatImages/" + DateTime.Now.ToString("ddMMyyyy-HHmmssffffff") + fileName;
+
+                    using (FileStream fs = System.IO.File.Create(_hostingEnv.WebRootPath + relativeName))
+                    {
+                        await file.CopyToAsync(fs);
+                        fs.Flush();
+                    }
+                }
+            }
+            hat.Image = relativeName;
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _context.Add(hat);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (DbUpdateException /* ex */)
+            {
+                //Log the error (uncomment ex variable name and write a log.
+                ModelState.AddModelError("", "Unable to save changes. " + "Try again, and if the problem persists " + "see your system administrator.");
+            }
             return View(hat);
+
+
+            //if (ModelState.IsValid)
+            //{
+            //    _context.Add(hat);
+            //    await _context.SaveChangesAsync();
+            //    return RedirectToAction("Index");
+            //}
+            //ViewData["CategoryID"] = new SelectList(_context.Categorys, "CategoryID", "CategoryID", hat.CategoryID);
+            //ViewData["SupplierID"] = new SelectList(_context.Suppliers, "SupplierID", "SupplierID", hat.SupplierID);
+            //return View(hat);
         }
 
-        // GET: Hats/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+    // GET: Hats/Edit/5
+    public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {

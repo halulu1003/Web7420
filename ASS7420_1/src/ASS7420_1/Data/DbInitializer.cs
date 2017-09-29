@@ -69,12 +69,12 @@ namespace ASS7420_1.Data
             context.SaveChanges();
             var hats = new Hat[]
                 {
-                    new Hat { SupplierID=1,CategoryID=2,HatName="KALSD",Price=12.5,Description="FAFDFGGSAD",Image="CDSD"},
-                    new Hat { SupplierID=2,CategoryID=2,HatName="ALSD",Price=8.5,Description="FAFDFGGSAD",Image="CDSD"},
-                    new Hat { SupplierID=3,CategoryID=1,HatName="DALSD",Price=11,Description="FAFDFGGSAD",Image="CDSD"},
-                    new Hat { SupplierID=1,CategoryID=2,HatName="QALSD",Price=16.2,Description="FAFDFGGSAD",Image="CDSD"},
-                    new Hat { SupplierID=2,CategoryID=2,HatName="CLSD",Price=7.9,Description="FAFDFGGSAD",Image="CDSD"},
-                    new Hat { SupplierID=3,CategoryID=1,HatName="DALSD",Price=14.3,Description="FAFDFGGSAD",Image="CDSD"},
+                    new Hat { SupplierID=1,CategoryID=2,HatName="KALSD",Price=12.5,Description="FAFDFGGSAD"},
+                    new Hat { SupplierID=2,CategoryID=2,HatName="ALSD",Price=8.5,Description="FAFDFGGSAD"},
+                    new Hat { SupplierID=3,CategoryID=1,HatName="DALSD",Price=11,Description="FAFDFGGSAD"},
+                    new Hat { SupplierID=1,CategoryID=2,HatName="QALSD",Price=16.2,Description="FAFDFGGSAD"},
+                    new Hat { SupplierID=2,CategoryID=2,HatName="CLSD",Price=7.9,Description="FAFDFGGSAD"},
+                    new Hat { SupplierID=3,CategoryID=1,HatName="DALSD",Price=14.3,Description="FAFDFGGSAD"},
                 };
             foreach (Hat h in hats)
             {
