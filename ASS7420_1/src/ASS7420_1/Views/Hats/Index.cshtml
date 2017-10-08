@@ -36,9 +36,6 @@
                 </a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Image)
-            </th>
-            <th>
                 <a asp-action="Index" asp-route-sortOrder="@ViewBag.IDSortParm">
                     @Html.DisplayNameFor(model => model.Price)
                 </a>
@@ -58,9 +55,6 @@
 
             <td>
                 @Html.DisplayFor(modelItem => item.HatName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Image)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Price)
