@@ -133,6 +133,17 @@ namespace ASS7420_1.Controllers
                 ModelState.AddModelError("", "Unable to save changes. " + "Try again, and if the problem persists " + "see your system administrator.");
             }
             return View(hat);
+
+
+            //if (ModelState.IsValid)
+            //{
+            //    _context.Add(hat);
+            //    await _context.SaveChangesAsync();
+            //    return RedirectToAction("Index");
+            //}
+            //ViewData["CategoryID"] = new SelectList(_context.Categorys, "CategoryID", "CategoryID", hat.CategoryID);
+            //ViewData["SupplierID"] = new SelectList(_context.Suppliers, "SupplierID", "SupplierID", hat.SupplierID);
+            //return View(hat);
         }
 
     // GET: Hats/Edit/5
