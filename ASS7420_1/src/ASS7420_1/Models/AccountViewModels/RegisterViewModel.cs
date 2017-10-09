@@ -24,8 +24,11 @@ namespace ASS7420_1.Models.AccountViewModels
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
         
+=======
+>>>>>>> parent of d29261b... add_mig f
 =======
 >>>>>>> parent of d29261b... add_mig f
     }

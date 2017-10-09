@@ -61,7 +61,11 @@ namespace ASS7420_1.Controllers
                 TwoFactor = await _userManager.GetTwoFactorEnabledAsync(user),
                 Logins = await _userManager.GetLoginsAsync(user),
 <<<<<<< HEAD
+<<<<<<< HEAD
                 BrowserRemembered = await _signInManager.IsTwoFactorClientRememberedAsync(user),
+=======
+                BrowserRemembered = await _signInManager.IsTwoFactorClientRememberedAsync(user)
+>>>>>>> parent of d29261b... add_mig f
 =======
                 BrowserRemembered = await _signInManager.IsTwoFactorClientRememberedAsync(user)
 >>>>>>> parent of d29261b... add_mig f
