@@ -8,7 +8,7 @@ namespace ASS7420_1.Data
 {
     public class DbInitializer
     {
-        public static void Initialize(ShopContext context)
+        public static void Initialize(ApplicationDbContext context)
         {
             context.Database.EnsureCreated();
             // Look for any students.
@@ -69,12 +69,12 @@ namespace ASS7420_1.Data
             context.SaveChanges();
             var hats = new Hat[]
                 {
-                    new Hat { SupplierID=1,CategoryID=2,HatName="KALSD",Price=12.5,Description="FAFDFGGSAD"},
-                    new Hat { SupplierID=2,CategoryID=2,HatName="ALSD",Price=8.5,Description="FAFDFGGSAD"},
-                    new Hat { SupplierID=3,CategoryID=1,HatName="DALSD",Price=11,Description="FAFDFGGSAD"},
-                    new Hat { SupplierID=1,CategoryID=2,HatName="QALSD",Price=16.2,Description="FAFDFGGSAD"},
-                    new Hat { SupplierID=2,CategoryID=2,HatName="CLSD",Price=7.9,Description="FAFDFGGSAD"},
-                    new Hat { SupplierID=3,CategoryID=1,HatName="DALSD",Price=14.3,Description="FAFDFGGSAD"},
+                    new Hat { SupplierID=1,CategoryID=2,HatName="KALSD",Price=12.5,Description="FAFDFGGSAD",Image="images/hat2.jpg"},
+                    new Hat { SupplierID=2,CategoryID=2,HatName="ALSD",Price=8.5,Description="FAFDFGGSAD",Image="images/hat2.jpg"},
+                    new Hat { SupplierID=3,CategoryID=1,HatName="DALSD",Price=11,Description="FAFDFGGSAD",Image="images/hat2.jpg"},
+                    new Hat { SupplierID=1,CategoryID=2,HatName="QALSD",Price=16.2,Description="FAFDFGGSAD",Image="images/hat2.jpg"},
+                    new Hat { SupplierID=2,CategoryID=2,HatName="CLSD",Price=7.9,Description="FAFDFGGSAD",Image="images/hat2.jpg"},
+                    new Hat { SupplierID=3,CategoryID=1,HatName="DALSD",Price=14.3,Description="FAFDFGGSAD",Image="images/hat2.jpg"},
                 };
             foreach (Hat h in hats)
             {
@@ -84,7 +84,7 @@ namespace ASS7420_1.Data
             var orderitems = new Orderitem[]
             {
                 new Orderitem{HatID=1,OrderID=1,Quantity=4},
-                new Orderitem{HatID=3,OrderID=2,Quantity=5},
+                new Orderitem{HatID=3,OrderID=2,Quantity=15},
                 new Orderitem{HatID=2,OrderID=4,Quantity=24},
 
             };

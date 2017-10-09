@@ -12,9 +12,9 @@ namespace ASS7420_1.Controllers
 {
     public class CustomersController : Controller
     {
-        private readonly ShopContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public CustomersController(ShopContext context)
+        public CustomersController(ApplicationDbContext context)
         {
             _context = context;    
         }

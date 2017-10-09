@@ -5,12 +5,13 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using ASS7420_1.Data;
 
-namespace ASS7420_1.Migrations
+namespace ASS7420_1.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ShopContextModelSnapshot : ModelSnapshot
+    [Migration("20171009013218_Address0231")]
+    partial class Address0231
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.1")

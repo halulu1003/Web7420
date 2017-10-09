@@ -17,10 +17,10 @@ namespace ASS7420_1.Controllers
 {
     public class HatsController : Controller
     {
-        private readonly ShopContext _context;
+        private readonly ApplicationDbContext _context;
         private readonly IHostingEnvironment _hostingEnv;
 
-        public HatsController(ShopContext context, IHostingEnvironment hEnv)
+        public HatsController(ApplicationDbContext context, IHostingEnvironment hEnv)
         {
             _context = context;
             _hostingEnv = hEnv;
