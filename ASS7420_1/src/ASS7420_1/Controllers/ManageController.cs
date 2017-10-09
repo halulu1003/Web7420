@@ -60,7 +60,11 @@ namespace ASS7420_1.Controllers
                 PhoneNumber = await _userManager.GetPhoneNumberAsync(user),
                 TwoFactor = await _userManager.GetTwoFactorEnabledAsync(user),
                 Logins = await _userManager.GetLoginsAsync(user),
+<<<<<<< HEAD
                 BrowserRemembered = await _signInManager.IsTwoFactorClientRememberedAsync(user),
+=======
+                BrowserRemembered = await _signInManager.IsTwoFactorClientRememberedAsync(user)
+>>>>>>> parent of d29261b... add_mig f
             };
             return View(model);
         }
